@@ -10,6 +10,7 @@ class DrawIOConverter < Liquid::Tag
     @variables = variables.split " "
     @path_to_diagram = ""
     @selected_diagram_num = nil
+    @diagram_height = 200
     
     @variables.each do |variable|
       param_value_pair = variable.split "="
@@ -18,6 +19,8 @@ class DrawIOConverter < Liquid::Tag
         @path_to_diagram = param_value_pair[1].tr('\"', '')
       elsif param_value_pair[0] == "page_number"
         @selected_diagram_num = param_value_pair[1].to_i
+      elsif param_value_pair[0] == "height"
+        @diagram_height = param_value_pair[1].to_i
       end
     end
 
@@ -27,7 +30,9 @@ class DrawIOConverter < Liquid::Tag
   def extract_diagram(path, selected_diagram_num)
     doc = File.open(path) { |f| Nokogiri::XML(f) }
     diagrams = doc.xpath("//mxfile//diagram")
-    puts "Diagrams found at \"#{ path }\": #{ diagrams.length }. Selected: #{ @selected_diagram_num }"
+    puts "Diagrams found at \"#{ path }\": #{ diagrams.length }. " \
+         "Selected: #{ @selected_diagram_num }. " \
+         "Height: #{ @diagram_height }"
     diagram = diagrams[selected_diagram_num]
 
     diagram_name = diagram["name"]
@@ -42,9 +47,10 @@ class DrawIOConverter < Liquid::Tag
     encoded_diagram_name = ERB::Util.url_encode diagram_name
 
     viewer_url_base = "https://viewer.diagrams.net/?highlight=0000ff&edit=_blank&layers=1&nav=1"
-    viewer_url = "#{ viewer_url_base }&title=#{ encoded_diagram_name }\#R#{ encoded_diagram }"
+        viewer_url = "#{ viewer_url_base }&title=#{ encoded_diagram_name }\#R#{ encoded_diagram }"
+    viewer_style = "style=\"width:100%;height:#{ @diagram_height }px\""
 
-    %Q{<iframe frameborder="0" style="width:100%;height:200px" src="#{ viewer_url }"></iframe>}
+    %Q{<iframe frameborder="0" #{ viewer_style } src="#{ viewer_url }"></iframe>}
   end
 
   Liquid::Template.register_tag "drawio", self

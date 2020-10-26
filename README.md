@@ -1,8 +1,9 @@
 # jekyll-drawio
 
 ## Overview
+[![Gem Version](https://badge.fury.io/rb/jekyll-drawio.svg)](https://badge.fury.io/rb/jekyll-drawio)
 
-The plugin provides the functionality for generating an embeded draw.io diagrams.
+The plugin provides the functionality for generating embedded draw.io diagrams.
 
 ## Usage
 
@@ -22,4 +23,4 @@ Parameters:
 
 `path` - relative path to a diagram.
 
-`page_number` - page number from the diagram that should be embeded. NOTE: the numeration starts from 0.
+`page_number` - page number from the diagram that should be embedded. NOTE: the numeration starts from 0.

@@ -9,13 +9,15 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Illia Gorbatiuk"]
   spec.email         = ["ilya.gorbatiuk@gmail.com"]
 
-
   spec.summary       = "Jekyll plugin to generate HTML snippets for embedding draw.io diagrams"
   
-
   spec.license       = "MIT"
   spec.require_paths = ["lib"]
+  spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
+
   spec.homepage    = 'https://github.com/mutcher/jekyll-drawio'
+  spec.metadata["homepage_uri"] = spec.homepage
+  spec.metadata["source_code_uri"] = spec.homepage
 
   spec.add_runtime_dependency 'jekyll', '~> 3.9'
   spec.add_runtime_dependency 'nokogiri', '~> 1.10'

@@ -11,13 +11,13 @@ Gem::Specification.new do |spec|
 
 
   spec.summary       = "Jekyll plugin to generate HTML snippets for embedding draw.io diagrams"
-  spec.description   = "Jekyll plugin to generate HTML snippets for embedding draw.io diagrams"
   
+
   spec.license       = "MIT"
   spec.require_paths = ["lib"]
   spec.homepage    = 'https://github.com/mutcher/jekyll-drawio'
 
-  spec.add_dependency 'jekyll'
-  spec.add_dependency 'nokogiri'
-  spec.add_dependency 'erb'
+  spec.add_runtime_dependency 'jekyll', '~> 3.9'
+  spec.add_runtime_dependency 'nokogiri', '~> 1.10'
+  spec.add_runtime_dependency 'erb', '~> 2.2'
 end

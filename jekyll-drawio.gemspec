@@ -12,6 +12,7 @@ Gem::Specification.new do |spec|
   spec.summary       = "Jekyll plugin to generate HTML snippets for embedding draw.io diagrams"
   
   spec.license       = "MIT"
+  spec.files         = Dir["lib/**/*"]
   spec.require_paths = ["lib"]
   spec.required_ruby_version = Gem::Requirement.new(">= 2.5.0")
 

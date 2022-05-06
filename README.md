@@ -23,6 +23,6 @@ Parameters:
 
 `path` - relative path to a diagram.
 
-`page_number` - page number from the diagram that should be embedded. NOTE: the numeration starts from 0.
+`page_number` - page number from the diagram that should be embedded. NOTE: the numeration starts from 0. This is optional and if not provided all pages of the diagram will load.
 
 `height` - diagram frame height in px.

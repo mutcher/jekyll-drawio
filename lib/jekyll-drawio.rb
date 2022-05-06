@@ -11,7 +11,7 @@ class DrawIOConverter < Liquid::Tag
     @path_to_diagram = ""
     @selected_diagram_num = nil
     @diagram_height = 200
-    
+
     @variables.each do |variable|
       param_value_pair = variable.split "="
       if param_value_pair[0] == "path"
@@ -29,14 +29,21 @@ class DrawIOConverter < Liquid::Tag
 
   def extract_diagram(path, selected_diagram_num)
     doc = File.open(path) { |f| Nokogiri::XML(f) }
-    diagrams = doc.xpath("//mxfile//diagram")
+
+    if selected_diagram_num
+      diagrams = doc.xpath("//mxfile//diagram")
+      diagram = diagrams[selected_diagram_num]
+      diagram_name = diagram["name"]
+      diagram_content = diagram.content
+    else
+      diagrams = doc.xpath("//mxfile")
+      diagram_name  = path.slice((path.rindex("/")+1)..-1)
+      diagram_content = diagrams
+    end
+
     puts "Diagrams found at \"#{ path }\": #{ diagrams.length }. " \
          "Selected: #{ @selected_diagram_num }. " \
          "Height: #{ @diagram_height }"
-    diagram = diagrams[selected_diagram_num]
-
-    diagram_name = diagram["name"]
-    diagram_content = diagram.content
 
     return diagram_name, diagram_content
   end

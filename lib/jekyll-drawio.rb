@@ -38,7 +38,6 @@ class DrawIOConverter < Liquid::Tag
     else
       diagrams = doc.xpath("//mxfile")
       diagram_name  = path.slice((path.rindex("/")+1)..-1)
-      puts diagram_name
       diagram_content = diagrams
     end
 

@@ -31,12 +31,12 @@ class DrawIOConverter < Liquid::Tag
     doc = File.open(path) { |f| Nokogiri::XML(f) }
     diagrams = doc.xpath("//mxfile//diagram")
     puts "Diagrams found at \"#{ path }\": #{ diagrams.length }. " \
-         "Selected: #{ @selected_diagram_num }. " \
-         "Height: #{ @diagram_height }"
+         "Selected: #{ @selected_diagram_num }. "
+         
     diagram = diagrams[selected_diagram_num]
 
     diagram_name = diagram["name"]
-    diagram_content = diagram.content
+    diagram_content = diagram.content.to_s
 
     return diagram_name, diagram_content
   end
@@ -45,6 +45,8 @@ class DrawIOConverter < Liquid::Tag
     diagram_name, diagram_content = self.extract_diagram @path_to_diagram, @selected_diagram_num
     encoded_diagram = ERB::Util.url_encode diagram_content
     encoded_diagram_name = ERB::Util.url_encode diagram_name
+
+    puts "Parsed diagram: name=#{ diagram_name } length=#{ diagram_content.length } height=#{ @diagram_height }"
 
     viewer_url_base = "https://viewer.diagrams.net/?highlight=0000ff&edit=_blank&layers=1&nav=1"
         viewer_url = "#{ viewer_url_base }&title=#{ encoded_diagram_name }\#R#{ encoded_diagram }"

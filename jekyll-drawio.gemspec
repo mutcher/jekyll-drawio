@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.metadata["homepage_uri"] = spec.homepage
   spec.metadata["source_code_uri"] = spec.homepage
 
-  spec.add_runtime_dependency 'jekyll', '~> 3.9'
-  spec.add_runtime_dependency 'nokogiri', '~> 1.10'
-  spec.add_runtime_dependency 'erb', '~> 2.2'
+  spec.add_runtime_dependency 'jekyll', '~> 4.3'
+  spec.add_runtime_dependency 'nokogiri', '~> 1.14'
+  spec.add_runtime_dependency 'erb', '~> 4.0'
 end

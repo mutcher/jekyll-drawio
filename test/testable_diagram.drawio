@@ -1,0 +1,37 @@
+<mxfile host="Electron" modified="2023-04-16T17:06:50.622Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/21.1.2 Chrome/106.0.5249.199 Electron/21.4.3 Safari/537.36" etag="DlbMPt1q1kqkjHlJXUNN" version="21.1.2" type="device">
+  <diagram name="Page-0" id="LaxfCNpSPWuLkdPQJo0J">
+    <mxGraphModel dx="1418" dy="820" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="NY2RaFPMxS_D9FvXeHKu-12" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="NY2RaFPMxS_D9FvXeHKu-2" target="NY2RaFPMxS_D9FvXeHKu-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NY2RaFPMxS_D9FvXeHKu-2" value="Client" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="90" y="50" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="NY2RaFPMxS_D9FvXeHKu-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;endArrow=none;endFill=0;" parent="1" source="NY2RaFPMxS_D9FvXeHKu-3" target="NY2RaFPMxS_D9FvXeHKu-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NY2RaFPMxS_D9FvXeHKu-16" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=none;endFill=0;" parent="1" source="NY2RaFPMxS_D9FvXeHKu-3" target="NY2RaFPMxS_D9FvXeHKu-4" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NY2RaFPMxS_D9FvXeHKu-3" value="Visit" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="310" y="240" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="NY2RaFPMxS_D9FvXeHKu-4" value="Receipt" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="310" y="50" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="NY2RaFPMxS_D9FvXeHKu-15" style="edgeStyle=orthogonalEdgeStyle;shape=connector;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;labelBackgroundColor=default;strokeColor=default;fontFamily=Helvetica;fontSize=11;fontColor=default;endArrow=none;endFill=0;" parent="1" source="NY2RaFPMxS_D9FvXeHKu-5" target="NY2RaFPMxS_D9FvXeHKu-3" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="NY2RaFPMxS_D9FvXeHKu-5" value="Employee" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="550" y="50" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="NY2RaFPMxS_D9FvXeHKu-8" value="Service" style="html=1;whiteSpace=wrap;" parent="1" vertex="1">
+          <mxGeometry x="310" y="360" width="110" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

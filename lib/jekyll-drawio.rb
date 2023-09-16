@@ -1,21 +1,51 @@
 require "jekyll"
 require "jekyll-drawio/version"
+require "diagram_extractor"
 require "nokogiri"
 require "erb"
 
 MODULE_TAG_NAME = "drawio"
 
-class DrawIOConverter < Liquid::Tag
-  attr_accessor :path_to_diagram, :selected_diagram_num, :diagram_height
+def split_parameters_line(parameters_line)
+  params = []
+  tmp = ""
 
-  def initialize(tagName, variables, tokens)
+  parameters_line.each_char do |symbol|
+    if symbol == " "
+      params.push tmp
+      tmp = ""
+    else
+      tmp += symbol
+    end
+  end
+
+  params.push tmp
+  params
+end
+
+class DrawIOConverter < Liquid::Tag
+  attr_accessor :path_to_diagram,
+                :selected_diagram_num,
+                :diagram_height,
+                :markup,
+                :diagram_extractor
+
+  def initialize(tagName, markup, tokens)
     super
     @path_to_diagram = ""
-    @selected_diagram_num = nil
+    @selected_diagram_num = 0
     @diagram_height = 200
+    @markup = markup
+    @diagram_extractor = DiagramExtractor.new()
+  end
 
-    variables.each do |variable|
-      param_value_pair = variable.split "="
+  def parse_content(context)
+    parameters_line = Liquid::Template.parse(@markup).render context
+    parameters_line.strip!
+    parameters = split_parameters_line(parameters_line)
+
+    parameters.each do |param|
+      param_value_pair = param.split "="
       if param_value_pair[0] == "path"
         # TODO: find appropriate method to trim the string
         @path_to_diagram = param_value_pair[1].tr('\"', "")
@@ -29,22 +59,13 @@ class DrawIOConverter < Liquid::Tag
     puts "path=\"#{@path_to_diagram}\" page_num=#{@selected_diagram_num}"
   end
 
-  def extract_diagram(path)
-    doc = File.open(path) { |f| Nokogiri::XML(f) }
-    diagrams = doc.xpath("//mxfile//diagram")
-    puts "Diagrams found at \"#{path}\": #{diagrams.length}. " \
-         "Selected: #{@selected_diagram_num}. "
-
-    diagram = diagrams[@selected_diagram_num]
-
-    diagram_name = diagram["name"]
-    diagram_content = diagram.to_html
-
-    return diagram_name, diagram_content
-  end
-
   def render(context)
-    diagram_name, diagram_content = self.extract_diagram @path_to_diagram
+    if @markup.empty?
+      return "Error processing input, incorrect syntax"
+    end
+    parse_content context
+
+    diagram_name, diagram_content = self.diagram_extractor.extract_diagram @path_to_diagram, @selected_diagram_num
     encoded_diagram = ERB::Util.url_encode diagram_content
     encoded_diagram_name = ERB::Util.url_encode diagram_name
 
